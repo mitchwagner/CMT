@@ -1,0 +1,4 @@
+# HOW TO ACCESS MYSQL DB
+
+bash> mysql -u root -p
+And the password is "cloudera"
