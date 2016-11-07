@@ -1,0 +1,102 @@
+I downloaded avro tools from
+
+www-us.apache.org/dist/avro/avro-1.8.1/java/avro-tools-1.8.1.jar
+
+The first column that is read in when you load a tuple in Pig
+is used as the rowkey when you store the data. So, the team
+last semester took advantage of this and their script is basically
+
+"Load, then store"
+
+When Faiz gets me the real file, I will be able to do some 
+testing to see if that will work in pretty much the same
+manner.
+
+You are required to do weird things if you save your
+column names with spaces
+
+---------------------------------------------------------------------------
+
+The ultimate automatic uploading script is going
+to need a whole series of operations applied to
+the tweets.
+
+0) We will need to do ALL of the below in a 
+   bash script, which just consists of several
+   lines of calling various pig scripts
+
+1) Clean Text
+   Stop words, bad words, empty lines
+
+   Stop words: pig script
+   Bad words: pig script
+   Empty lines: pig script
+
+2) Hashtag extraction
+   This can be a pig script
+
+3) Mention extraction
+   This can be a pig script
+
+4) Geolocation
+   This will have to be done elsewhere. Maybe let faiz take this?
+
+5) Whether or not the tweet was a RT
+   Easy pig script
+
+6) Stanford NER entities
+   Need to figure out how to call this.
+
+7) Additional tweet information population
+    Key question: how do we know which tweets have already been processed?
+    Also, how do we GET the tweets that have not been processed already?
+
+3 Cleaning pipelines to worry about:
+Filter bad words. Inappropriate plaintext redacted with ***
+Filter bad words. Remove # and @. Remove URLs, Stop words. Lemmatize.
+Filter bad words. Remove @, keep #. Remove URLs, stop words. Lemmatize.
+
+The first step in the above is going to be lemmatization.
+
+Stage one: get all of the above working in multi-phase script.
+Stage two: get all of the above working in optimized script, where we
+           don't re-load everything.
+
+Some of these could be run as asynch processes
+instead of being done at load time...which ones?
+
+---------------------------------------------------------------
+The Pig scripts are fairly trivial and can be written at
+any time. The things that are going to take a lot of time here
+are the geolocation and NER projects
+
+Easiest workflow:
+Standalone MapReduce job that reads from the database and then,
+for each row, adds a field that was retrieved via the API.
+
+Or something like that, anyway.
+
+Basically: get every row from HBase call a method and get results
+back from Google, and continue to the next guy. BUT, we don't 
+want EVERY row...we just want rows that have not yet been 
+processed. I could have a marker like "-1" for those rows.
+
+
+---------------------------------------------------------------
+The things that should be async processes are the things that
+have an API limit. Simple.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
