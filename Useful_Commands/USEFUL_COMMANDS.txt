@@ -1,0 +1,15 @@
+# HOW TO ACCESS MYSQL DB
+#
+# bash> mysql -u root -p
+# And the password is "cloudera"
+#
+#
+# *******************************************************************************
+# # HDFS Commands
+#
+# # List everything in HDFS 
+# bash> hadoop fs -ls
+#
+# # Show contents of the file (last 5 records)
+# bash> hadoop fs -cat z_312/* | tail -5
+# *******************************************************************************
