@@ -2,38 +2,26 @@
      "type": "record",
      "namespace": "hadoop.dlib.vt.edu",
      "name": "hadoop.dlib.vt.edu.tweets",
-     "fields": [{ "name" : "archivesource",
-                  "type" : "string",
+     "fields": [{ "name": "iso_language_code",
+                  "type": "string",
                   "default" : "NONE"},
 
                 { "name": "text",
                   "type": "string",
                   "default" : "NONE"},
 
-                { "name": "to_user_id",
-                  "type": "string",
-                  "default" : "NONE"},
+                { "name": "geo_coordinates_1",
+                  "type": "double",
+                  "default" : 0},
 
-                { "name": "from_user",
-                  "type": "string",
-                  "default" : "NONE"},
+                { "name": "geo_coordinates_0",
+                  "type": "double",
+                  "default" : 0},
 
-                { "name": "id",
-                  "type": "string",
+                { "name" : "archivesource",
+                  "type" : "string",
                   "default" : "NONE"},
-
-                { "name": "from_user_id",
-                  "type": "string",
-                  "default" : "NONE"},
-
-                { "name": "iso_language_code",
-                  "type": "string",
-                  "default" : "NONE"},
-
-                { "name": "source",
-                  "type": "string",
-                  "default" : "NONE"},
-
+                
                 { "name": "profile_image_url",
                   "type": "string",
                   "default" : "NONE"},
@@ -42,19 +30,32 @@
                   "type": "string",
                   "default" : "NONE"},
 
-                { "name": "geo_coordinates_0",
-                  "type": "double",
-                  "default" : 0},
-
-                { "name": "geo_coordinates_1",
-                  "type": "double",
-                  "default" : 0},
 
                 { "name": "created_at",
                   "type": "string",
                   "default" : "NONE"},
 
+                { "name": "source",
+                  "type": "string",
+                  "default" : "NONE"},
+
                 { "name": "time",
                   "type": "int",
-                  "default" : 0}]
+                  "default" : 0},
+
+                { "name": "from_user",
+                  "type": "string",
+                  "default" : "NONE"},
+
+                { "name": "from_user_id",
+                  "type": "string",
+                  "default" : "NONE"},
+
+                { "name": "to_user_id",
+                  "type": "string",
+                  "default" : "NONE"},
+
+                { "name": "id",
+                  "type": "string",
+                  "default" : "NONE"}]
 }
