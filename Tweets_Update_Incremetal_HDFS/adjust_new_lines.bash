@@ -21,3 +21,10 @@ eval $CMD2
 
 # Remove the interim file
 rm tempfile1.txt
+
+# Remove the top blank line
+sed -i 1d $filename
+
+# Add headers to the file
+sed -i.bak '1i\
+archivesource\ttext\tto_user_id\tfrom_user\tid\tfrom_user_id\tiso_language_code\tsource\tprofile_image_url\tgeo_type\tgeo_coordinates_0\tgeo_coordinates_1\tcreated_at\ttime' $filename
