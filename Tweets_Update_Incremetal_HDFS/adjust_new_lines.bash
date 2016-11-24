@@ -31,11 +31,8 @@ sed -i 1d $filename
 #profile_image_url\tgeo_type\tgeo_coordinates_0\tgeo_coordinates_1\tcreated_at\ttime' $filename
 
 # Replace missing data with 0
-CMD3="awk 'BEGIN { FS = OFS = "\t" } { for(i=1; i<=NF; i++) /
-if($i ~ /^ *$/) $i = 0 }; 1' $filename > tempfile2.txt"
-eval CMD3
+awk 'BEGIN { FS = OFS = "\t" } { for(i=1; i<=NF; i++) if($i ~ /^ *$/) $i = 0 }; 1' $filename > tempfile2.txt
 
 # Move interim file to the original filename
-mv tempfile2.txt > $filename
-
+mv tempfile2.txt $filename
 
