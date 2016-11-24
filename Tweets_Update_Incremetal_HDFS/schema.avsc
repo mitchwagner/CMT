@@ -3,44 +3,58 @@
      "namespace": "hadoop.dlib.vt.edu",
      "name": "hadoop.dlib.vt.edu.tweets",
      "fields": [{ "name" : "archivesource",
-                  "type" : "string"},
+                  "type" : "string",
+                  "default : "NONE"},
 
                 { "name": "text",
-                  "type": "string"},
+                  "type": "string",
+                  "default : "NONE"},
 
                 { "name": "to_user_id",
-                  "type": "string"},
+                  "type": "string",
+                  "default : "NONE"},
 
                 { "name": "from_user",
-                  "type": "string"},
+                  "type": "string",
+                  "default : "NONE"},
 
                 { "name": "id",
-                  "type": "string"},
+                  "type": "string",
+                  "default : "NONE"},
 
                 { "name": "from_user_id",
-                  "type": "string"},
+                  "type": "string",
+                  "default : "NONE"},
 
                 { "name": "iso_language_code",
-                  "type": "string"},
+                  "type": "string",
+                  "default : "NONE"},
 
                 { "name": "source",
-                  "type": "string"},
+                  "type": "string",
+                  "default : "NONE"},
 
                 { "name": "profile_image_url",
-                  "type": "string"},
+                  "type": "string",
+                  "default : "NONE"},
 
                 { "name": "geo_type",
-                  "type": "string"},
+                  "type": "string",
+                  "default : "NONE"},
 
                 { "name": "geo_coordinates_0",
-                  "type": "double"},
+                  "type": "double",
+                  "default : "0"},
 
                 { "name": "geo_coordinates_1",
-                  "type": "double"},
+                  "type": "double",
+                  "default : "0"},
 
                 { "name": "created_at",
-                  "type": "string"},
+                  "type": "string",
+                  "default : "NONE"},
 
                 { "name": "time",
-                  "type": "int"},]
+                  "type": "int",
+                  "default : "0"}]
 }
