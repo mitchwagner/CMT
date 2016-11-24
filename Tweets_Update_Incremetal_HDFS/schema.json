@@ -1,0 +1,46 @@
+{
+     "type": "record",
+     "namespace": "hadoop.dlib.vt.edu",
+     "name": "hadoop.dlib.vt.edu.tweets",
+     "fields": [{"name" : "archivesource",
+                  "type" : "string"},
+
+                {"name": "text",
+                  "type": "string"},
+
+                {"name": "to_user_id",
+                  "type": "string"},
+
+                {"name": "from_user",
+                  "type": "string"},
+
+                {"name": "id",
+                  "type": "string"},
+
+                {"name": "from_user_id",
+                  "type": "string"},
+
+                {"name": "iso_language_code",
+                  "type": "string"},
+
+                {"name": "source",
+                  "type": "string"},
+
+                {"name": "profile_image_url",
+                  "type": "string"},
+
+                {"name": "geo_type",
+                  "type": "string"},
+
+                {"name": "geo_coordinates_0",
+                  "type": "double"},
+
+                {"name": "geo_coordinates_1",
+                  "type": "double"},
+
+                {"name": "created_at",
+                  "type": "string"},
+
+                {"name": "time",
+                  "type": "int"},]
+}
