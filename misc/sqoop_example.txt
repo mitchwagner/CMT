@@ -1,0 +1,7 @@
+[hdfs@node1 ~]$ sqoop import-all-tables \
+--connect jdbc:mysql://10.0.0.101/twitter \
+—-username ***** \
+—-password ***** \
+--warehouse-dir /collections/tweets-705/ \
+--as-avrodatafile \
+-m 1

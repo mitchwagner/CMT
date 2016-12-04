@@ -1,0 +1,37 @@
+[sslee777@node1 ~]$ export IDX_SOLR_DIR="index_solr"; export LOAD_HBASE_DIR="load_hbase"
+[sslee777@node1 ~]$ export COLLECTION="ideal-tweet-10"
+[sslee777@node1 ~]$ cd $HOME/$LOAD_HBASE_DIR/
+
+[sslee777@node1 ~]$ screen -S loading_Hbase
+
+// Multiple Loading - initial tweet data
+[sslee777@node1 load_hbase]$ ./import-range.sh load-avro-into-hbase-arg-ckey.pig $COLLECTION 1 10
+
+// Optional: Code
+[sslee777@node1 load_hbase]$ cat import-range.sh
+#! /bin/bash
+# Outer loop: multiple collections
+# example: import-range load-avro-into-hbase-arg-ckey.pig ideal-tweet-10 1 10 
+# example: import-range load-avro-into-hbase-cf-readable.pig ideal-tweet-10 1 10 
+pig_script=$1
+table=$2
+i=$3
+j=$4
+while [ $i -lt $[j+1] ]
+do
+  echo "=====" $i "====="
+    out=$(pig -f $pig_script -p table=$table -p num=$i)
+      echo "$out"
+      i=$[$i + 1]
+      done # End of outer loop
+
+      // Optional: code
+      [sslee777@node1 index_tweets]$ cat load-avro-into-hbase-arg-ckey.pig
+      /* Load AVRO */
+      raw = LOAD '/collections/tweets/z_$num/' USING AvroStorage();
+
+      /* Add columns: composite key and collection number */
+      data = FOREACH raw GENERATE CONCAT((chararray)$num, CONCAT('-',(chararray)id)) AS ckey, $num as colnum, archivesource, text, REPLACE(text, ',','') AS cleantext, to_user_id, from_user, id, from_user_id, iso_language_code, source, profile_image_url, geo_type, geo_coordinates_0, geo_coordinates_1, created_at, time;
+
+      /* Store data into HBase */
+      STORE data into 'hbase://$table' using org.apache.pig.backend.hadoop.hbase.HBaseStorage('tweet:colnum, tweet:archivesource, tweet:text, tweet:cleantext, tweet:to_user_id, tweet:from_user, tweet:id, tweet:from_user_id, tweet:iso_language_code, tweet:source, tweet:profile_image_url, tweet:geo_type, tweet:geo_coordinates_0, tweet:geo_coordinates_1, tweet:created_at, tweet:time');
