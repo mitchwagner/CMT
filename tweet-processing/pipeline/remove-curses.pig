@@ -1,3 +1,9 @@
+-- This script demonstrates how Pig can be removed to eliminate a number of
+-- bad words from a body of text. At present, it is not a part of the final
+-- pipeline.
+-- @author: Mitch Wagner
+
+
 -- Load the data from HBase
 curses = LOAD 'hbase://curses' USING org.apache.pig.backend.hadoop.hbase.HBaseStorage(
          'badwords:line', '-loadKey true') AS 

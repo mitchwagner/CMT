@@ -27,9 +27,9 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 
-import org.apache.hadoop.hbase.filter.Filter;
-import org.apache.hadoop.hbase.filter.PrefixFilter;
-
+import org.apache.hadoop.hbase.filter.SingleColumnValueFilter;
+import org.apache.hadoop.hbase.filter.CompareFilter.CompareOp;
+import org.apache.hadoop.hbase.filter.FilterList;
 
 /**
  * This class will be used for processing the tweets in HBase using Stanford's
@@ -75,6 +75,14 @@ public class NLPTweets {
         Scan scan = new Scan(Bytes.toBytes(collectionNumber + "-"), 
                              Bytes.toBytes(collectionNumber +
                                  "-99999999999999999999999")); 
+ 
+        FilterList list = new FilterList();
+        SingleColumnValueFilter filter = new SingleColumnValueFilter(Bytes.toBytes("clean-tweet"),
+                                                                     Bytes.toBytes("lemmatized"),
+                                                                     CompareOp.EQUAL,
+                                                                     Bytes.toBytes(""));
+        list.addFilter(filter);
+        scan.setFilter(list);
 
         // Create StanfordCoreNLP object properties, with POS
         // tagging (required for lemmatization), and lemmatization
@@ -114,10 +122,6 @@ public class NLPTweets {
             String locs = getEntity(sentences, "LOCATION");
             String people = getEntity(sentences, "PERSON");
 
-            System.out.println("Orgs: " + orgs);
-            System.out.println("Locs: " + locs);
-            System.out.println("People: " + people);
-            
             // Instantiate a new Put object with the row key
             Put p = new Put(rowKey);
  
@@ -197,18 +201,6 @@ public class NLPTweets {
            }
        }
        return builder.toString();
-        /*
-        List<String> lemmas = new LinkedList<String>();
-        for (CoreMap sentence: sentences) {
-            for(CoreLabel token: sentence.get(TokensAnnotation.class)) {
-                String e = token.get(NamedEntityTagAnnotation.class);
-                if (e.equals(entity)){
-                    builder.append(token.originalText());
-                    builder.append(";");
-                }
-            }
-        } 
-        return builder.toString(); */
     }
 
     /**

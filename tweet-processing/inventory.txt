@@ -1,0 +1,17 @@
+csv-download: this folder contains an example of downloading
+    rows from HBase into a table
+
+geolocation: this folder contains the beginnings of a Java
+    project using Google's geolocation API to parse tweet 
+    longitude and latitude into locations that we store
+    with each tweet. This project is unfinished. The 
+    project is managed using the Gradle build tool.
+
+nlp: this folder contains a Java project that uses the
+    Stanford NLP library to lemmatize tweets and extract
+    named entities from them. The project is manged using
+    the Gradle build tool.
+
+pipeline: this folder contains a number of scripts that
+    form the base of the pipeline to move tweets from
+    HDFs to HBase.
