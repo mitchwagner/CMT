@@ -7,7 +7,7 @@ if [ $# -ne 1 ]; then
 	exit
 fi
 
-# Transfer the AQL data into the MySQL database
+# Transfer the SQL data into the MySQL database
 if mysql -u root -p'infostorage' infostorage < $MYSQLFILE; then
     echo Import of data into MySQL successful!
 else
