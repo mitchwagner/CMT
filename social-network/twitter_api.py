@@ -81,7 +81,7 @@ def calculate_user_importance(user_info):
 	im = []
 
 	for user in user_info:
-		x = user[4] * 0.25 + user[5] * 0.25 + user[6] * 0.15 + user[7] * 0.25 + user[8] * 0.1
+		x = user[4] * 0.25 + user[5] * 0.25 + user[6] * 0.1 + user[7] * 0.25 + user[8] * 0.15
 		im.append((x))
 
 	min_max_scaler = preprocessing.MinMaxScaler()
